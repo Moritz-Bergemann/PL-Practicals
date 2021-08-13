@@ -1,0 +1,40 @@
+BEGIN 
+    INT m = 10;
+    
+    FOR ii FROM 1 TO 100
+    DO
+        print ((ii, newline));
+        
+        IF ii MOD 3 EQ 0 AND ii MOD 5 EQ 0
+            THEN print (("fizzbuzz", newline))
+        ELIF ii MOD 3 EQ 0
+            THEN print (("fizz", newline)) 
+        ELIF ii MOD 5 EQ 0
+            THEN print (("buzz", newline))
+        FI
+    OD
+END
+
+# Alternative Version not using 'ELIF' #
+#
+BEGIN 
+    INT m = 10;
+    
+    FOR ii FROM 1 TO 100
+    DO
+        print ((ii, newline));
+        
+        IF ii MOD 3 EQ 0 AND ii MOD 5 EQ 0
+            THEN print (("fizzbuzz", newline))
+        ELSE
+            IF ii MOD 3 EQ 0
+                THEN print (("fizz", newline))
+            ELSE 
+                IF ii MOD 5 EQ 0
+                    THEN print (("buzz", newline))
+                FI
+            FI
+        FI
+    OD
+END
+#
