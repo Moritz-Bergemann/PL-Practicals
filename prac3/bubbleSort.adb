@@ -6,7 +6,8 @@ procedure BubbleSort is
     type Array_Values is range 0 .. 1000;
     type Array_Type is array (Array_Size) of Array_Values;
 
-    -- Types
+    -- Variables
+    Sorted: Boolean := False;
     New_Number: Integer := 123;
     Temp: Array_Values;
     My_Array: Array_Type := (50, 40, 30, 20, 10);
@@ -18,10 +19,14 @@ begin
     end loop;
 
     -- Do the sort
-    for ii in reverse Array_Size loop --TODO make this like actual bubble sort with a "sorted" flag
-        for jj in Array_Size'First .. ii - 1 loop
+    while not Sorted loop
+        Sorted := True;
+        for jj in Array_Size'First .. Array_Size'Last - 1 loop
             -- If the elements are unequal
             if My_Array(jj) > My_Array(jj + 1) then
+                -- Since we had to swap something, the array wasn't sorted
+                Sorted := False;
+                
                 -- Swap the elements
                 Temp := My_Array(jj + 1);
                 My_Array(jj + 1) := My_Array(jj); 
