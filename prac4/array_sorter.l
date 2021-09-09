@@ -3,8 +3,10 @@
 #include "y.tab.h"
 %}
 %%
-open            return ARROPEN;
-close           return ARRCLOSE;
+\[              return ARROPEN;
+\]              return ARRCLOSE;
+\,              return ARRSEP;
+[0-9]+          return DIGIT;
 \n              /* ignore end of line */;
 [ \t]+          /* ignore whitespace */;
 %%

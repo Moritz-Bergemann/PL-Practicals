@@ -19,7 +19,7 @@ main()
 
 %}
 
-%token ARROPEN ARRCLOSE
+%token ARROPEN ARRCLOSE ARRSEP DIGIT
 
 %%
 
@@ -28,29 +28,48 @@ commands: /* empty */
     ;
 
 command:
-    one
+    open
     |
-    two
+    close
     |
-    three
+    complete
+    |
+    sep
+    |
+    digit
     ;
 
-    one:
-        ARROPEN
-        {
-            printf("\tARROPEN!\n");
-        }
-        ;
+open:
+    ARROPEN
+    {
+        printf(" ARROPEN! ");
+    }
+    ;
 
-    two:
-        ARRCLOSE
-        {
-            printf("\tARRCLOSE!\n");
-        }
-        ;
-    
-    three:
-        ARROPEN ARRCLOSE
-        {
-            printf("\tCOMPLETE ARRAY!\n");
-        }
+close:
+    ARRCLOSE
+    {
+        printf(" ARRCLOSE! ");
+    }
+    ;
+
+complete:
+    ARROPEN ARRCLOSE
+    {
+        printf(" COMPLETE ARRAY!\n ");
+    }
+    ;
+
+sep:
+    ARRSEP
+    {
+        printf(" COMMA ");
+    }
+    ;
+
+digit:
+    DIGIT
+    {
+        printf(" DIGIT ");
+    }
+    ;
