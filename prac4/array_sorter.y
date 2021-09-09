@@ -1,7 +1,10 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 #include <string.h>
+#include <stdbool.h>
+#include "varray.h"
 
 void yyerror(const char *str)
 {
@@ -21,11 +24,13 @@ main()
 /**
  * Builds a size-1 array to store the imported integer value
  */
-int* buildArray(int firstVal)
+varray* buildVArray(int firstVal)
 {
-    int* arr = malloc(sizeof(int));
+    varray* arr = (varray*)malloc(sizeof(varray));
+    arr->arr = (int*)malloc(sizeof(int));
+    arr->len = 1;
 
-    arr[0] = firstVal;
+    arr->arr[0] = firstVal;
 
     return arr;
 }
@@ -35,38 +40,61 @@ int* buildArray(int firstVal)
  * This is extremely inefficient, however this is C and arrays will be of 2-digit lengths 
  *  at most so it doesn't matter.
  */
-int* appendArray (int* arr, int newValue) {
-    int size = sizeof(arr)/sizeof(int);
+varray* appendVArray (varray* arr, int newValue) 
+{
+    arr->arr = (int*)realloc(arr->arr, sizeof(int) * (arr->len + 1));
+    arr->len++;
 
-    int* newArr = realloc(arr, sizeof(int) * (size + 1));
-
-    //Make sure it didn't stack it
-    assert(newArr != NULL);
+    //Make sure it didn't stack basic library functionality
+    assert(arr->arr != NULL);
 
     //Add new element to the end of it
-    newArr[size] = newValue;
+    arr->arr[arr->len - 1] = newValue;
 
-    return newArr;
+    return arr;
 }
 
-void printArray(int* arr){
-    int size = sizeof(a)/sizeof(int);
-    
+void printVArray(varray* arr)
+{
     printf("[ ");
 
-    for (uint ii = 0; ii < size; ii++) 
+    for (uint ii = 0; ii < arr->len; ii++) 
     {
-        printf("%d ", arr[ii]);
+        printf("%d ", arr->arr[ii]);
     }
 
     printf("]\n");
+}
+
+void swap(int* arr, int i1, int i2)
+{
+    int temp = arr[i1];
+    arr[i1] = arr[i2];
+    arr[i2] = temp;
+}
+
+void bubbleSort(int* arr, int len)
+{
+    bool sorted = false;
+    while (!sorted)
+    {
+        sorted = true;
+        for (uint ii = 0; ii < len - 1; ii++)
+        {
+            if (arr[ii] > arr[ii + 1])
+            {
+                sorted = false;
+                swap(arr, ii, ii+1);
+            }
+        }
+    }
 }
 
 %}
 
 %union {
     int intVal;
-    int* arrVal;
+    struct varray* arrVal;
 }
 
 %token ARROPEN ARRCLOSE ARRSEP
@@ -84,8 +112,6 @@ command:
     array
     |
     sequence
-    |
-    num
     ;
 
 array:
@@ -93,7 +119,10 @@ array:
     {
         printf(" complete array! ");
         printf("Array is: ");
-        printArray($2);
+        printVArray($2);
+        bubbleSort($2->arr, $2->len);
+        printf("Sorted array is: ");
+        printVArray($2);
     }
     ;
 
@@ -101,13 +130,17 @@ sequence:
     NUMBER
     {
         //Build initial array
-        $$ = buildArray($1);
+        $$ = buildVArray($1);
     }
     |
     sequence ARRSEP NUMBER
     {
         //Append new value to array
-        $$ = appendArray($1, $3);
+        printf("Sequence detected!\n");
+        printf("Number to add is: %d\n", $3);
+        printf("Appending to array, current state is: ");
+        printVArray($1);
+        $$ = appendVArray($1, $3);
     }
     ;
 
