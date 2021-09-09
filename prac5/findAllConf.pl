@@ -7,32 +7,17 @@ my @found;
 
 my $root = "/";
 my $ii = 0;
-# find( 
-#     {
-#         # look through files
-#         wanted => sub { 
-#             if ($File::Find::name =~ /^.*\.conf$/) {
-#                 push @found, $File::Find::name; 
-#                 print "Uhm\n";#$ii;
-#                 $ii++;
-#             }
-#         },
-#         preprocess => {
-#             return grep { ! (-d && (! -x or ! -r)) } @_; 
-#         }
-#     },
-#     $root
-# );
 
+# Call lambda on each identified file
 find( { 
     wanted => sub { 
+        # If file ends in '.conf'
         if ($File::Find::name =~ /^.*\.conf$/) {
+            # Add to the array
             push @found, $File::Find::name; 
-            print "$File::Find::name\n";
         }
     },  
     preprocess => sub {
-        # print "--> Reading: $File::Find::dir\n";         
         return grep { ! (-d && (! -x or ! -r)) } @_; 
     }
 }, $root); 
