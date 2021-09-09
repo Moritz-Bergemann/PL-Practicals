@@ -117,11 +117,10 @@ command:
 array:
     ARROPEN sequence ARRCLOSE
     {
-        printf(" complete array! ");
-        printf("Array is: ");
-        printVArray($2);
+        //Sort the array (sequence)
         bubbleSort($2->arr, $2->len);
-        printf("Sorted array is: ");
+
+        //Return it to the user
         printVArray($2);
     }
     ;
@@ -129,26 +128,13 @@ array:
 sequence: 
     NUMBER
     {
-        //Build initial array
+        //Build initial array using numeric value
         $$ = buildVArray($1);
     }
     |
     sequence ARRSEP NUMBER
     {
         //Append new value to array
-        printf("Sequence detected!\n");
-        printf("Number to add is: %d\n", $3);
-        printf("Appending to array, current state is: ");
-        printVArray($1);
         $$ = appendVArray($1, $3);
     }
     ;
-
-// num:
-//     NUMBER
-//     {
-//         printf("Number! Value is %d", $1);
-
-//         //Return the number
-//         $$ = $1;
-//     }
