@@ -1,0 +1,3 @@
+- The syntax is kind of confusing and seems contrarian
+- The logic of having all functionality passed to objects (which are everything) was actually very intuitive to me
+- `<value> <statement>` makes sense to me and seems consistently implemeneted (i.e. even in if statements)
