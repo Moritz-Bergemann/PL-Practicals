@@ -1,0 +1,20 @@
+COCKTAIL_SORT(list)
+    IF CDR list = () THEN
+        RETURN 
+    ELIF CAR list > CDAR list THEN
+        RETURN COCKTAIL_SORT(CDDR list)
+    ELSE 
+        RETURN COCKTAIL_SORT
+
+FUNNY_SWAP(list)
+    IF x > y THEN
+        RETURN CONS x y
+    ELSE RETURN CONS y x
+
+SWAP_FIRST(list)
+    IF (CAR list > CDAR list)
+        RETURN (CONS (CONS (CAR list CDAR list)))
+    ELSE
+        RETURN list
+
+=========================================================

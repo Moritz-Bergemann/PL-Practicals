@@ -1,0 +1,23 @@
+LEN(list)
+    IF CDR list = ()
+        RETURN 1
+    ELSE 
+        RETURN LEN(CDR list) + 1
+
+BUBBLE_SORT(list)
+    RETURN BUBBLE_SORT_ITER(list, LEN(list))
+
+BUBBLE_SORT_ITER(list, amount)
+    IF amount = 1:
+        RETURN list
+    ELSE:
+        RETURN BUBBLE_SORT_ITER(BUBBLE_SORT_RUN(list), amount - 1)
+
+BUBBLE_SORT_RUN(list)
+    IF CDR list = () THEN
+        RETURN CAR list
+    ELSE THEN
+        IF CAR list > CDAR:
+            RETURN CONS (CDAR list) BUBBLE_SORT(CONS CAR list CDDR list)
+        ELSE
+            RETURN CONS (CAR list) BUBBLE_SORT(CDR list))
