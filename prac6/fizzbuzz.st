@@ -1,4 +1,4 @@
-'hellow world!' printNl
+'hello world!' printNl
 
 1 to: 100 do: [:x |
     (x \\ 15 == 0)

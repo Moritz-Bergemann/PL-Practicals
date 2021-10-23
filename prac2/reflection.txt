@@ -2,3 +2,6 @@ For a trivial program like FizzBuzz, the differences between FORTRAN and ALGOL-6
 Both use very similar syntax, even if different characters are used to represent the same thing (like EQ vs .EQ.)
 Notably, the syntax for performing MOD is different between the languages. In FORTRAN, it is more akin to a function call, while in ALGOL-68 it is like a logical operator.
     NOTE: IS it a function call in FORTRAN? Or does it just look like that
+
+Question: 
+WAIT TO SEE IF YOU ACTUALLY HAVE TO DO THIS

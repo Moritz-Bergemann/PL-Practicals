@@ -1,16 +1,15 @@
-BEGIN 
-    INT m = 10;
-    
+BEGIN
+    # Performs 'fizzbuzz' for numbers 1 to 100 #
     FOR ii FROM 1 TO 100
-    DO
-        print ((ii, newline));
-        
+    DO  
         IF ii MOD 3 EQ 0 AND ii MOD 5 EQ 0
             THEN print (("fizzbuzz", newline))
         ELIF ii MOD 3 EQ 0
             THEN print (("fizz", newline)) 
         ELIF ii MOD 5 EQ 0
             THEN print (("buzz", newline))
+        ELSE
+            print ((ii, newline)) 
         FI
     OD
 END

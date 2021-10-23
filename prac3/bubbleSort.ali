@@ -1,0 +1,57 @@
+V "GNAT Lib v10"
+M P W=b
+P ZX
+
+RN
+RV NO_IO
+RV SPARK_05
+
+U bubblesort%b		bubbleSort.adb		26f4d8c5 NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+Z system.img_int%s	s-imgint.adb		s-imgint.ali
+
+D ada.ads		20210408115627 76789da1 ada%s
+D a-except.ads		20210408115627 a7106115 ada.exceptions%s
+D a-ioexce.ads		20210408115627 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20210408115627 119b8fb3 ada.streams%s
+D a-tags.ads		20210408115627 491b781d ada.tags%s
+D a-textio.ads		20210408115627 aef4d56d ada.text_io%s
+D a-unccon.ads		20210408115627 0e9b276f ada.unchecked_conversion%s
+D bubbleSort.adb	20211020023523 88000da8 bubblesort%b
+D interfac.ads		20210408115627 5ab55268 interfaces%s
+D i-cstrea.ads		20210408115627 e53d8b8e interfaces.c_streams%s
+D system.ads		20210408115627 4635ec04 system%s
+D s-crtl.ads		20210408115627 0ebbdb71 system.crtl%s
+D s-exctab.ads		20210408115627 54135002 system.exception_table%s
+D s-ficobl.ads		20210408115627 078245e4 system.file_control_block%s
+D s-imgint.ads		20210408115627 02dbe0c2 system.img_int%s
+D s-parame.ads		20210408115627 48ec542b system.parameters%s
+D s-secsta.ads		20210408115627 20bbe636 system.secondary_stack%s
+D s-soflin.ads		20210408115627 a7318a92 system.soft_links%s
+D s-stache.ads		20210408115627 a37c21ec system.stack_checking%s
+D s-stalib.ads		20210408115627 09bd3940 system.standard_library%s
+D s-stoele.ads		20210408115627 2dc34a04 system.storage_elements%s
+D s-traent.ads		20210408115627 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20210408115627 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20210408115627 1b7d22d2 system.wch_con%s
+G a e
+G c Z b b [bubblesort standard 3 11 none]
+X 1 ada.ads
+16K9*Ada 20e8 8|1r6 2r5
+X 6 a-textio.ads
+57K13*Text_IO 727e16 8|1w10 2r9
+508U14*Put_Line 8|16s5 18s9 39s5 41s9
+X 8 bubbleSort.adb
+3U11*BubbleSort 3b11 43l5 43t15
+5I10 Array_Size<short_short_integer> 7r31 17r15 24r19 24r39 40r15
+6I10 Array_Values<short_integer> 7r46 12r11 18r19 41r19
+7A10 Array_Type(6I10)<5I10> 13r15
+10b5 Sorted{boolean} 22r15 23m9 28m17
+11i5 New_Number{integer}
+12i5 Temp{6I10} 31m17 33r33
+13a5 My_Array{7A10} 18r38 26r16 26r31 31r25 32m17 32r37 33m17 41r38
+17i9 ii{5I10} 18r47
+24i13 jj<short_short_integer> 26r25 26r40 31r34 32r26 32r46 33r26
+40i9 ii{5I10} 41r47
+
