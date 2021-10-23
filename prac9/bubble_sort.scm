@@ -37,24 +37,35 @@
         ((equal? (cdr list) '())
             list
         )
-        ; If next two elements are the wrong way around, swap them and continue
-        ((> (car list) (cadr list))
-            (cons (car (swap-first list)) (bubble-sort-run (cdr (swap-first list))))
-        )
-        ; If next two elements are right way around, don't swap them and continue
-        ((<= (car list) (cadr list))
-            (cons (car list) (bubble-sort-run (cdr list)))
+        ; If we're not at the end of the list, swap the first two elements (if needed) and then continue
+        ((not (equal? (cdr list) '()))
+            (cons (car (sort-first list)) (bubble-sort-run (cdr (sort-first list))))
         )
     )
+    ; Otherwise, swap the first two elements if they are the wrong way around and then continue
 )
 
 ; Swaps the first and second element of the list
-(define (swap-first list)
-    (cons (cadr list) (cons (car list) (cddr list)))
+(define (sort-first list)
+    (cond
+        ; If at the end of the list, recursively return the list
+        ((equal? (cdr list) '())
+            list
+        )
+        ; If next two elements are the wrong way around, swap them
+        ((> (car list) (cadr list))
+            (cons (cadr list) (cons (car list) (cddr list)))
+        )
+        ; If next two elements are right way around, don't swap them
+        ((<= (car list) (cadr list))
+            list
+        )
+    )
 )
 
 ; TEST FUNCTIONS
 ; (load "bubble_sort.scm")
 ; (bubble-sort '(4 1 3 2 82 4 2 1378 474 2 2 18 5 5812))
+; (bubble-sort '(4 1 3 2))
 ; (swap-first '(5 3 2 6 1 4))
 ; (sorted '(1 2 3 4))
