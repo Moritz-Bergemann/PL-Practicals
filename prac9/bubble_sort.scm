@@ -42,7 +42,6 @@
             (cons (car (sort-first list)) (bubble-sort-run (cdr (sort-first list))))
         )
     )
-    ; Otherwise, swap the first two elements if they are the wrong way around and then continue
 )
 
 ; Swaps the first and second element of the list
