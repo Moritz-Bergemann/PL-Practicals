@@ -16,6 +16,20 @@ While fortran was obviously different to other languages I had worked with, some
 Even though there were syntactic differences, all the fundamentals were still the same - I could still intuitively figure out most syntax and logical structure (like if statements starting with 'if' and ending with 'endif', and do-loops working similar to for-loops). There's a world of difference between the challenge of learning basic FORTRAN compared to writing something like assembly.
 
 ## Practical 2 - ALGOL
+For this simple practical, I found ADA to be extremely readable and writeable. Even compared to FORTRAN, all syntax was extremely intuitive - there was is no syntax in my program the purpose of which wasn't immediately obvious (aside from maybe the double brackets in `print`), unlike FORTRAN's `(*,*)` and line labels. In this way, ALGOL reminded me a lot of python - its syntax was so grammatical and obvious it became self-documenting - I thought about putting in comments to describe what I was doing, but everything was immediately obvious. The syntax's consistency also helps with this - modulo looking like an operator rather than a function (see below) helps to make Fizzbuzz's logicla expressions easier to parse.
+
+```Fortran
+    if (MOD(ii, 3) .EQ. 0 .AND. MOD(ii, 5) .EQ. 0) then
+```
+```Algol
+    IF ii MOD 3 EQ 0 AND ii MOD 5 EQ 0
+```
+*Comparison of the same functionally equivalent line of FizzBuzz in Fortran (above) and ALGOL (below).*
+
+
+Fizzbuzz's simplicity makes it hard to judge how easily mistakes can be made in ALGOL, but I found writing in it very intuitive. I think only needing semicolons on all but the last line of a block could lead to some hard-to-track errors, for example, but my program never had more than one line per block, so it was never an issue. I also think writeability would be much poorer in more complex code examples, as the limitations of ALGOL's simple design and limited feature-set begin to show.
+
+## 
 
 ## Practical 3 - ADA
 ## Practical 4 - Yacc and Lex

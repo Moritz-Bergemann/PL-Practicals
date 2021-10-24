@@ -1,3 +1,5 @@
+.PHONY: prac1 prac2 prac3 prac4 prac5 prac5-pl prac5-rb prac5-sh prac6 prac7 prac8 prac9 clean
+
 prac1: prac1/fizzbuzz
 	./prac1/fizzbuzz
 
@@ -50,4 +52,4 @@ prac4/y.tab.c:
 	yacc -d prac4/array_sorter.y
 
 clean:
-	echo "TODO"
+	rm prac1/fizzbuzz prac3/bubbleSort prac4/array_sorter prac4/lex.yy.c prac4/y.tab.c
