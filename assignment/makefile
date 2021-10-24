@@ -7,7 +7,7 @@ prac2:
 	a68g prac2/fizzbuzz.a68
 
 prac3: prac3/bubbleSort
-	./bubbleSort
+	./prac3/bubbleSort
 
 prac4: prac4/array_sorter
 	./prac4/array_sorter
@@ -39,8 +39,8 @@ prac9:
 prac1/fizzbuzz:
 	f77 prac1/fizzbuzz.f -o prac1/fizzbuzz
 
-prac3/bubbleSort: 
-	gnatmake bubbleSort.adb -o prac3/bubbleSort
+prac3/bubbleSort: prac3/bubbleSort.adb
+	gnatmake prac3/bubbleSort.adb -o prac3/bubbleSort
 
 prac4/array_sorter:
 	gcc prac4/lex.yy.c prac4/y.tab.c -o prac4/array_sorter
@@ -52,4 +52,6 @@ prac4/y.tab.c:
 	yacc -d prac4/array_sorter.y
 
 clean:
-	rm prac1/fizzbuzz prac3/bubbleSort prac4/array_sorter prac4/lex.yy.c prac4/y.tab.c
+	rm -f prac1/fizzbuzz 
+	rm -f prac3/bubbleSort prac3/bubbleSort.o prac3/bubbleSort.ali 
+	rm -f prac4/array_sorter prac4/lex.yy.c prac4/y.tab.c
