@@ -1,5 +1,9 @@
 # Programming Languages - Final Report
 *Moritz Bergemann (19759948)*
+## Introduction
+To run any of the practicals, consult the Makefile. Each prac can be compiled/run using the command `make prac<num>`.
+Some practicals must be run manually or in separate parts. If so, the make command for the prac will inform you of this.
+
 ## Practical 1 - FORTRAN
 Readability was relatively strong, though I will be biased due to my previous experience with langauges like Python or Java. There are some things that were very difficult to interpret without further knowledge, such as the syntax of the 'write' statement - what does the `(*,*)` component mean?
 
@@ -30,7 +34,6 @@ Fizzbuzz's simplicity makes it hard to judge how easily mistakes can be made in 
 
 ### Question - Assume your program pauses when it prints out fizzbuzz. Draw the stack with all activation records, and both static and dynamic chains, at this point.
 ***TODO!!!!!!!!!***
-
 
 ## Practical 3 - ADA
 ADA was the most challenging traditional language to complete the weekly practical with. I think this is down to its extreme complexity compared to other language. As discussed in the lectures, ADA can be considered an engineering trade-off, and this is apparent here. Compared to FORTRAN or ALGOL, ADA's complexity results makes writing large applications much easier and more effective, though small applications (such as bubble-sort) become much more verbose. Bubble sort is more complicated than fizzbuzz, but even so - my ALGOL program from practical 3 was 15 lines, while my ADA program is 43 lines.
@@ -85,9 +88,39 @@ The parallels between implementations in both languages are immediately apparent
 When using good indentation practises, I would say ADA is more readable than C in terms of basic syntax, especially for someone unfamiliar with either language (the point of `if` & `end` if is a lot clearer than `if {` and `}`, for instance). The main difference is Ada's requirement to declare types at the start, which I think is needlessly overcomplicated for a program of this scope, harming simplicity as there are more concepts that must be understood to perform/understand the task.
 
 ## Practical 4 - Yacc and Lex
-Yacc and lex was probably the most challenging practical, which I am blaming on its counterintuitive and confusing syntax.
-### Question - 
-## Practical 5 - Perl, Rubokf nejofqin eFQfqoe [ fqqe FU eQefqQeqwy, and Bash
+Yacc and lex was probably the most challenging practical, which I am blaming on its counterintuitive and confusing syntax combined with its completely different system of logic and purpose. The interaction between Yacc and Lex was not intuitive to me - it took me a while to understand how Lex would parse input text into a set of tokens, which could then be used within Lex, and what components of each program related to the other (such as the use of `yylval`). Many parts of the syntax, such as that tokens had to be specifically denoted in Yacc via `%token` were also very unintuitive to me (though this could have been due to my lazy reading of the documentation). 
+
+Thankfully, I didn't encounter any reduce/reduce or other logical errors during development. I initially thought these errors would be much more insidious and difficult to detect, though I found it relatively easy to keep in mind that only a single definition could apply to any lex character set/yacc rule non-terminal character set. I can see how this would become challenging in larger programs though as chaining multiple definitions makes it harder to intuit what any matching input could look like.
+
+Regarding Yacc specifically - I believe the fundamental BNF-like structure is extremely writeable and readable. The logic of the program can be easily followed, and the few existing operations are highly orthogonal. All the complexities added by Yacc, however, only reduce readability, writeability, and reliability. Information about data types is one example - take my below definition of `sequence`. At its most basic, I think the code is very intuitive; A `sequence` is either a number, or an existing `sequence` with a separator and number added it. However, so much is not immediately obvious. What is the type of `NUMBER`? What do the functions return, and how can this be used later? It seems to me that, especially as things get more complex, this web of data type relationships will become increasingly hard to follow as so little is immediately shown to the user.
+
+```c
+sequence: 
+    NUMBER
+    {
+        //Build initial array using numeric value
+        $$ = buildVArray($1);
+    }
+    |
+    sequence ARRSEP NUMBER
+    {
+        //Append new value to array
+        $$ = appendVArray($1, $3);
+    }
+    ;
+```
+
+The fundamentals of Lex were much more intuitive. A pattern is defined, and then a token to return is defined. Writeable and readable. Things only become complicated, as usual, when Yacc is introduced. Even though it is fundamentally C, the syntax for assigning specific values in Lex for use in Yacc was very confusing, and agin dependant on knowledge of the makeup of the separate Yacc program.
+```c
+yylval.intVal = atoi(yytext);
+return(NUMBER);
+```
+
+### Question - If you were building a compiler, how do you think you would implment a symbol table?
+For a given scope, I would implement the symbol table as a hash table. Aside from adding variables to the symbol table, the primary thing the table is used for is looking up symbol names to see if they have been defined, to perform type checking, or to determine its scope. All of these usages require searching the table for the name, which is fastest with a hash table, which I believe would be worth the minor per-variable memory overhead of the hash table.
+For managing symbol tables at different scopes, I would implement a tree-like recursive data structure (something akin to the composite pattern for storign containers inside containers) to denote the symbol tables at different scopes. A new scope X inside scope Y could simply be represented by adding scope X inside scope Y, along with its symbol table. Global memory would be stored in the symbol table at the root of this tree. This approach permits simplicity and flexibilty.
+
+## Practical 5 - Perl, Ruby, and Bash
 ### Question - 
 ## Practical 6 - Smalltalk
 ### Question - 
