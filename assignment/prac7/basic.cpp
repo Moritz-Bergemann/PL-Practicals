@@ -69,32 +69,62 @@ void Book::SetBookISBN(std::string inISBN)
 int bookPartition(std::vector<Book *> books, int low, int high)
 {
     Book *pivot = books[high];
-    int split = low - 1;
+    int split = low;
+
+    // std::cout << "Doing split - low=" << low << ", high=" << high << "\n";
+    // std::cout << "INITIAL STATE OF ARRAY: \n";
+    // for (Book* b: books)
+    //     std::cout << b << "\n";
+
+    // std::cout << "low is " << low << ", high is " << high << "\n";
 
     for (int ii = low; ii < high; ii++)
     {
         if (books[ii]->GetBookID() < pivot->GetBookID())
         {
             //Increase split and put smaller element to the left of it
-            split++;
             Book* temp = books[ii];
-            books[ii] = books[split - 1];
-            books[split - 1] = temp;
+            books[ii] = books[split];
+            books[split] = temp;
+            split++;
         }
     }
+    std::cout << "Found split " << split << "\n";
 
-    return split;
+    // Book* temp = books[split];
+    // books[split] = books[high];
+    // books[high] = temp;
+    books[low] = books[high-1];
+    std::cout << "FINAL state of array: [";
+    for (Book* b: books)
+        std::cout << b->GetBookID() << ' ';
+    std::cout << "]\n";
+
+    return split + 1;
 }
 
 void bookQuickSort(std::vector<Book *> books, int low, int high)
 {
+    std::cout << "Quicksort: low=" << low << ", high=" << high << "\n" << std::flush;
+    std::cout << "State of array: [";
+    for (Book* b: books)
+        std::cout << b->GetBookID() << ' ';
+    std::cout << "]\n";
     if (low < high)
     {
         //Partition the array, then recursively call on the subsets
         int split = bookPartition(books, low, high);
 
+        std::cout << "AFTER state of array: [";
+        for (Book* b: books)
+            std::cout << b->GetBookID() << ' ';
+        std::cout << "]\n";
+
+
         //Recursively sort the splits
+        std::cout << "Doing first recursive call\n" << std::flush;
         bookQuickSort(books, low, split - 1);
+        std::cout << "Doing second recursive call\n" << std::flush;
         bookQuickSort(books, split, high);
     }
     
