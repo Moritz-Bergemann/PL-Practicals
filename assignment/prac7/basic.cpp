@@ -131,19 +131,17 @@ void bookQuickSort(Book** books, int low, int high)
 
 using std::to_string;
 
-Book ** makeBooks(int num)
+Book ** makeBooks(int num, int* values)
 {
     Book** books = (Book**)malloc(sizeof(Book*) * num);
     
     for (int ii = 0; ii < num; ii++)
     {
         //Make the books reverse sorted
-        int bookNum = num - ii;
-
         Book* book = new Book;
-        book->SetBookName("Book " + to_string(bookNum));
-        book->SetBookISBN("B_" + to_string(bookNum));
-        book->SetBookID(bookNum);
+        book->SetBookName("Book " + to_string(values[ii]));
+        book->SetBookISBN("B_" + to_string(values[ii]));
+        book->SetBookID(values[ii]);
 
         books[ii] = book;
     }
@@ -154,7 +152,14 @@ Book ** makeBooks(int num)
 int main(void)
 {
     int numBooks = 10;
-    Book** books = makeBooks(numBooks);
+    int values[10] = {12, 35, 456, 53, 5311, 1531, -1, 4242, 12, 11};
+    // int values[10] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+    Book** books = makeBooks(numBooks, values);
+
+    std::cout << "INIT FULL state of array: [";
+    for (int ii = 0; ii < 10; ii++)
+        std::cout << books[ii]->GetBookID() << ' ';
+    std::cout << "]\n";
 
     Book *c = new Book;
 
