@@ -1,7 +1,6 @@
 #include <string>
 // #include <stdio>
 #include <iostream>
-#include <vector>
 
 // Setup book class
 class Book
@@ -66,7 +65,7 @@ void Book::SetBookISBN(std::string inISBN)
 
 // QUICKSORT IMPLEMENTATION
 
-int bookPartition(std::vector<Book *> books, int low, int high)
+int bookPartition(Book** books, int low, int high)
 {
     Book *pivot = books[high];
     int split = low;
@@ -91,35 +90,34 @@ int bookPartition(std::vector<Book *> books, int low, int high)
     }
     std::cout << "Found split " << split << "\n";
 
-    // Book* temp = books[split];
-    // books[split] = books[high];
-    // books[high] = temp;
-    books[low] = books[high-1];
+    Book* temp = books[split];
+    books[split] = books[high];
+    books[high] = temp;
+    // books[low] = books[high-1];
     std::cout << "FINAL state of array: [";
-    for (Book* b: books)
-        std::cout << b->GetBookID() << ' ';
+    for (int ii = 0; ii < 10; ii++)
+        std::cout << books[ii]->GetBookID() << ' ';
     std::cout << "]\n";
 
-    return split + 1;
+    return split;
 }
 
-void bookQuickSort(std::vector<Book *> books, int low, int high)
+void bookQuickSort(Book** books, int low, int high)
 {
     std::cout << "Quicksort: low=" << low << ", high=" << high << "\n" << std::flush;
     std::cout << "State of array: [";
-    for (Book* b: books)
-        std::cout << b->GetBookID() << ' ';
+    for (int ii = low; ii <= high; ii++)
+        std::cout << books[ii]->GetBookID() << ' ';
     std::cout << "]\n";
     if (low < high)
     {
         //Partition the array, then recursively call on the subsets
         int split = bookPartition(books, low, high);
 
-        std::cout << "AFTER state of array: [";
-        for (Book* b: books)
-            std::cout << b->GetBookID() << ' ';
+        std::cout << "AFTER FULL state of array: [";
+        for (int ii = 0; ii < 10; ii++)
+            std::cout << books[ii]->GetBookID() << ' ';
         std::cout << "]\n";
-
 
         //Recursively sort the splits
         std::cout << "Doing first recursive call\n" << std::flush;
@@ -133,10 +131,10 @@ void bookQuickSort(std::vector<Book *> books, int low, int high)
 
 using std::to_string;
 
-std::vector<Book *> makeBooks(int num)
+Book ** makeBooks(int num)
 {
-    std::vector<Book *> books;
-
+    Book** books = (Book**)malloc(sizeof(Book*) * num);
+    
     for (int ii = 0; ii < num; ii++)
     {
         //Make the books reverse sorted
@@ -147,7 +145,7 @@ std::vector<Book *> makeBooks(int num)
         book->SetBookISBN("B_" + to_string(bookNum));
         book->SetBookID(bookNum);
 
-        books.push_back(book);
+        books[ii] = book;
     }
 
     return books;
@@ -155,7 +153,8 @@ std::vector<Book *> makeBooks(int num)
 
 int main(void)
 {
-    std::vector<Book *> books = makeBooks(10);
+    int numBooks = 10;
+    Book** books = makeBooks(numBooks);
 
     Book *c = new Book;
 
@@ -167,17 +166,17 @@ int main(void)
 
     delete c;
 
-    for (int ii = 0; ii < books.size(); ii++)
+    for (int ii = 0; ii < numBooks; ii++)
     {
         std::cout << "Book " << ii << ": " << books[ii]->GetBookName() << "\n";
     }
 
     //Sort the books
-    bookQuickSort(books, 0, books.size() - 1);
+    bookQuickSort(books, 0, numBooks - 1);
     
     std::cout << "Post-sort:\n";
 
-    for (int ii = 0; ii < books.size(); ii++)
+    for (int ii = 0; ii < numBooks; ii++)
     {
         std::cout << "Book " << ii << ": " << books[ii]->GetBookName() << "\n";
     }
