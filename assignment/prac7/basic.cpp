@@ -123,7 +123,7 @@ void bookQuickSort(Book** books, int low, int high)
         std::cout << "Doing first recursive call\n" << std::flush;
         bookQuickSort(books, low, split - 1);
         std::cout << "Doing second recursive call\n" << std::flush;
-        bookQuickSort(books, split, high);
+        bookQuickSort(books, split + 1, high);
     }
     
     //Otherwise, we are done
@@ -152,24 +152,18 @@ Book ** makeBooks(int num, int* values)
 int main(void)
 {
     int numBooks = 10;
-    int values[10] = {12, 35, 456, 53, 5311, 1531, -1, 4242, 12, 11};
+    // int values[10] = {12, 35, 456, 53, 5311, 1531, -1, 4242, 12, 11};
+    // int values[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     // int values[10] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+    int values[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+
+    //Create the books
     Book** books = makeBooks(numBooks, values);
 
     std::cout << "INIT FULL state of array: [";
     for (int ii = 0; ii < 10; ii++)
         std::cout << books[ii]->GetBookID() << ' ';
     std::cout << "]\n";
-
-    Book *c = new Book;
-
-    c->SetBookName("Bean Book");
-    c->SetBookISBN("BNS123");
-    c->SetBookID(123);
-
-    std::cout << "Book " + c->GetBookName() + "\n";
-
-    delete c;
 
     for (int ii = 0; ii < numBooks; ii++)
     {
@@ -184,6 +178,11 @@ int main(void)
     for (int ii = 0; ii < numBooks; ii++)
     {
         std::cout << "Book " << ii << ": " << books[ii]->GetBookName() << "\n";
+    }
+
+    for (int ii = 0; ii < numBooks; ii++)
+    {
+        delete books[ii]
     }
 
     return 0;
