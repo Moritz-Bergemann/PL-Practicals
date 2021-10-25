@@ -4,7 +4,7 @@
 To run any of the practicals, consult the Makefile. Each prac can be compiled/run using the command `make prac<num>`.
 Some practicals must be run manually or in separate parts. If so, the make command for the prac will inform you of this.
 
-## Practical 1 - FORTRAN
+## Practical 1 - Fortran
 Readability was relatively strong, though I will be biased due to my previous experience with langauges like Python or Java. There are some things that were very difficult to interpret without further knowledge, such as the syntax of the 'write' statement - what does the `(*,*)` component mean?
 
 Parts of the loop syntax also strongly impacted readability, namely the need to use statement labels. While I 
@@ -14,12 +14,12 @@ I also struggled writing strings. I at first attempted to use the elegant 'fizzb
 I disliked the requirement to have 7 columns of free space at the start of each line - it really only felt like a waste of space to me, though this primarily impacts the physical act of writing the language over high-level writeability or readability. Ensuring the first 7 lines are always indented  was already frustrating in the small program we needed to write, though this is probably at least in part as modern text editors weren't designed for this kind of syntactic structure. It may also affect readability, as distinguishing which line a character in could end up difficult.
 
 ### Question - How does Fortran compare to languages you have written in previously?
-While fortran was obviously different to other languages I had worked with, some parallels were immediately obvious. Braces are not used for managing scope, but tracking program structure was still easy with the provided syntax - what each syntactic word (`do`, `STOP`, etc) did was intuitive for osmeone new to the language. While I think bigger differences would have started becoming obvious had I written a more complex program (such as the lack of block structure or limiting of arrays to 3 dimensions), coding fizzbuzz in FORTRAN was largely identical to coding it in a popular modern language.
+While fortran was obviously different to other languages I had worked with, some parallels were immediately obvious. Braces are not used for managing scope, but tracking program structure was still easy with the provided syntax - what each syntactic word (`do`, `STOP`, etc) did was intuitive for osmeone new to the language. While I think bigger differences would have started becoming obvious had I written a more complex program (such as the lack of block structure or limiting of arrays to 3 dimensions), coding fizzbuzz in Fortran was largely identical to coding it in a popular modern language.
 
-Even though there were syntactic differences, all the fundamentals were still the same - I could still intuitively figure out most syntax and logical structure (like if statements starting with 'if' and ending with 'endif', and do-loops working similar to for-loops). There's a world of difference between the challenge of learning basic FORTRAN compared to writing something like assembly.
+Even though there were syntactic differences, all the fundamentals were still the same - I could still intuitively figure out most syntax and logical structure (like if statements starting with 'if' and ending with 'endif', and do-loops working similar to for-loops). There's a world of difference between the challenge of learning basic Fortran compared to writing something like assembly.
 
 ## Practical 2 - ALGOL
-For this simple practical, I found ADA to be extremely readable and writeable. Even compared to FORTRAN, all syntax was extremely intuitive - there was is no syntax in my program the purpose of which wasn't immediately obvious (aside from maybe the double brackets in `print`), unlike FORTRAN's `(*,*)` and line labels. In this way, ALGOL reminded me a lot of python - its syntax was so grammatical and obvious it became self-documenting - I thought about putting in comments to describe what I was doing, but everything was immediately obvious. The syntax's consistency also helps with this - modulo looking like an operator rather than a function (see below) helps to make Fizzbuzz's logicla expressions easier to parse.
+For this simple practical, I found ADA to be extremely readable and writeable. Even compared to Fortran, all syntax was extremely intuitive - there was is no syntax in my program the purpose of which wasn't immediately obvious (aside from maybe the double brackets in `print`), unlike Fortran's `(*,*)` and line labels. In this way, ALGOL reminded me a lot of python - its syntax was so grammatical and obvious it became self-documenting - I thought about putting in comments to describe what I was doing, but everything was immediately obvious. The syntax's consistency also helps with this - modulo looking like an operator rather than a function (see below) helps to make Fizzbuzz's logicla expressions easier to parse.
 
 ```Fortran
     if (MOD(ii, 3) .EQ. 0 .AND. MOD(ii, 5) .EQ. 0) then
@@ -36,7 +36,7 @@ Fizzbuzz's simplicity makes it hard to judge how easily mistakes can be made in 
 ***TODO!!!!!!!!!***
 
 ## Practical 3 - ADA
-ADA was the most challenging traditional language to complete the weekly practical with. I think this is down to its extreme complexity compared to other language. As discussed in the lectures, ADA can be considered an engineering trade-off, and this is apparent here. Compared to FORTRAN or ALGOL, ADA's complexity results makes writing large applications much easier and more effective, though small applications (such as bubble-sort) become much more verbose. Bubble sort is more complicated than fizzbuzz, but even so - my ALGOL program from practical 3 was 15 lines, while my ADA program is 43 lines.
+ADA was the most challenging traditional language to complete the weekly practical with. I think this is down to its extreme complexity compared to other language. As discussed in the lectures, ADA can be considered an engineering trade-off, and this is apparent here. Compared to Fortran or ALGOL, ADA's complexity results makes writing large applications much easier and more effective, though small applications (such as bubble-sort) become much more verbose. Bubble sort is more complicated than fizzbuzz, but even so - my ALGOL program from practical 3 was 15 lines, while my ADA program is 43 lines.
 
 I dislike having to declare all types used by the program at the beginning. While you could argue this would improve readability in larger programs as the entire scope of a given module can be known from the start, I found in this small program it resulted constant needless and confusing cross-checking as I tried to remember what the variables I had declared actually were.
 ```ada
@@ -54,7 +54,7 @@ I dislike having to declare all types used by the program at the beginning. Whil
 
 ADA was discussed in the lecture as bringing many paradigm improvements to programming languages, though few of them are relevant in bubble sort. For example, ADA supports strong labelling and orthogonal pass-types for functions - bubblesort only has a single function (in my implementation with no parameters). 
 
-ADA's overall syntax was very reminiscent of FORTRAN, which was largely fine for readability and writeability. I liked ADA's structure for the for loop and the way it interacted with the pre-defined types. Being able to select the range of all elements in the array using almost mathematical '...' notation was very intuitive.
+ADA's overall syntax was very reminiscent of Fortran, which was largely fine for readability and writeability. I liked ADA's structure for the for loop and the way it interacted with the pre-defined types. Being able to select the range of all elements in the array using almost mathematical '...' notation was very intuitive.
 ```ada
 for jj in Array_Size'First .. Array_Size'Last - 1 loop
 ```
@@ -121,10 +121,78 @@ For a given scope, I would implement the symbol table as a hash table. Aside fro
 For managing symbol tables at different scopes, I would implement a tree-like recursive data structure (something akin to the composite pattern for storign containers inside containers) to denote the symbol tables at different scopes. A new scope X inside scope Y could simply be represented by adding scope X inside scope Y, along with its symbol table. Global memory would be stored in the symbol table at the root of this tree. This approach permits simplicity and flexibilty.
 
 ## Practical 5 - Perl, Ruby, and Bash
-### Question - 
+Overall, these practicals were some of the easiest to write (barring my initial Perl approach), and I think all 3 perform the purpose being tested - writing quick functionality to automate a task - very well. The interpreted nature means the code that had to be written for each was minimal - writeability was prioritised over readability. So much of the implementations of different functionality was abstracted away for maximum convenience from the end-user's perspective. For the small scope of these practicals, all three languages perform fantastically. I think this simplicity may make it harder to write both larger programs () and more specific programs (where the specific functionality desired has not been created in an abstracted way, and the language's more limited basic features must be used instead).
+#### Perl
+Perl failed at simplicity and orthogonality. Basic operations are technically simple to understand, but there are too many of them. I found a thousand ways to do anything even with the pre-supplied libraries, but some are much better than others. Case in point - my perl script for finding all `.conf` files initially used `find` - it was the first result in my research, and what I assumed was the promoted solution for such a problem. However, after much troubleshooting, my solution ended up looking like this:
+```perl
+# Call lambda on each identified file
+find( { 
+    wanted => sub { 
+        # If file ends in '.conf'
+        if ($File::Find::name =~ /^.*\.conf$/) {
+            # Add to the array
+            push @found, $File::Find::name; 
+        }
+    },  
+    preprocess => sub {
+        return grep { ! (-d && (! -x or ! -r)) } @_; 
+    }
+}, $root); 
+```
+Not only is there so much syntax in these lines to make it near-impossible to find out what was going on, this was also not the best solution to the problem! I later (partially helped by Ruby) identified `Dir.glob` made the same functionality look like this:
+```perl
+Dir.glob("#{folder}/**/*.pdf")
+```
+
+Preservation of information was also arguably affected. I found it very challenging to understand how many basic functions were meant to be used, such as the `File::Find` function. If not for online examples, how should I have known `$File::Find::name` contained the filename I was looking for?
+#### Ruby
+I found Ruby much easier to work with than Perl, though this may be due the wisdom I had gained trying to understand the latter. Ruby also has a `Glob` function, so finding a solution here was easy. Like I mentioned previously, end-user related functionality has been abstracted out to the point of making common operations like this trivial.
+```ruby
+result = Dir.glob("#{root}/**/*.conf");
+```
+#### Bash
+Writing in bash felt very similar to writing in Perl and Ruby, though syntax was different. Instead of functionality being abstracted out to different libraries, it is instead abstracted to different shell programs (such as `find`). I found bash to be more orthogonal than Ruby or Perl - it seemed like to one thing, there was a straightforward built-in shell program to use for this specific task - in our case `find`. Bash's error messages were terrible though - even for something as simple as variable assignment I struggled to identify what was going wrong.
+```sh
+find $root -name '*.conf' -type f
+```
+
+## Question - Which of these languages was hardest to write this program in, and why?
+All three languages had the same problem to some extent - the difficulty of solving the problem completely depended on whether you picked the right approach out of many options. However, Perl was absolutely the worst offender for this, as I mentioned earlier - even for a simple program like this there were still a number of approaches. Therefore, I found bash to be hardest to write in. Ruby seemed to have fewer available approaches, and I found it much easier to identify a strong one (`glob`) through research. Bash had the same benefits - it was easy to identify `find` as the best solution to the problem.
+
 ## Practical 6 - Smalltalk
-### Question - 
+I found Smalltalk to be one of the simplest and most enjoyable languages to work with so far. While the syntax design initially seemed somewhat confusing and contrarian, I actually ended up finding it very intuitive due to its consistency. Everything is treated as an object, and therefore variables/literals are always the subject of a statement, with the applied functionality being passed to them (see below).
+```st
+"The 'printNl' functionality is passed to the string 'hello world!'"
+'hello world!' printNl
+
+"In the same way, the function to run if the expression '(x \\ 15 == 0)' is true is passed to the expression itself"
+(x \\ 15 == 0)
+    ifTrue: [
+        'fizzbuzz' displayNl.
+    ]
+```
+All syntax follows this same logic - while I initially found the loop syntax confusing, it made more sense once I thought of it as the iterator receiving a function to run at each iteration. 
+For a small program such as this, I found Smalltalk highly readable and writeable, and think this would also scale to larger programs due to its consistency and orthogonality.
+
+## Assignment Question - Compare smalltalk to fortran/algol fizzbuzz implementation
+- Smalltalk's syntax is very different to fortran or algol 
+    - Compared to fortran-ada difference, this is much stronger - fundamental syntax structure is different 
+- Though smalltalk's syntax is different, it actually makes more sense to me and I think would make more sense to beginners especially
+  - Strong consistency
+  - High orthogonality - every piece of syntax/operator has one function with very little overlap (at least in this function)
+    - Much more syntax to remember in fortran and algol (especially fortran)
+      - Much less boilerplate code
+
+### Question - How does your implementation of fizz buzz here compare with the implementations you wrote in Fortran and Algol in terms of readability and writeability?
+Smalltalk's syntax is somewhat different in structure to Fortran and ALGOL - it's definitely a larger gap to both than there is between Fortran and ALGOL. The main difference is the focus on variables rather than functionality - though I think this is equally readable and writeable. In fact, in terms of most programming principles, I would consider all three languages to be similar in writeability and readability: 
+- All three are highly simple - though Smalltalk is slightly more verbose, it is no harder to understand. Fortran may lose slightly in this respect due to its requirement to declare all values at the beginning, separate to their usage, and the presentation of the mathematical modulo operator as a function.
+- I consider Smalltalk the msot orthogonal - besides its strage loop syntax which I don't fully understand, there is a small number of operators that must be understood for most operations. Square brackets indicate functions, and things in brackets are isolated (e.g. the boolean statements), for example.
+- There is more syntax to remember in Fortran and ALGOL, especially Fortran, supporting both writeability and readability
+- Other aspects, such as type checking and data types, are difficult to comment on as they didn't really become relevant in fizzbuzz.
+
 ## Practical 7 - C++
+
+
 ### Question - 
 ## Practical 8 - Prolog
 ### Question - 
