@@ -56,4 +56,4 @@ prac4/y.tab.c: prac4/array_sorter.y
 clean:
 	rm -f prac1/fizzbuzz 
 	rm -f prac3/bubbleSort prac3/bubbleSort.o prac3/bubbleSort.ali 
-	rm -f prac4/array_sorter prac4/lex.yy.c prac4/y.tab.c
+	rm -f prac4/array_sorter prac4/lex.yy.c prac4/y.tab.c prac4/y.tab.h
