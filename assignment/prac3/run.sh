@@ -1,2 +1,0 @@
-gnatmake bubbleSort.adb
-./bubbleSort
