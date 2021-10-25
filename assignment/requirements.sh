@@ -3,7 +3,7 @@ apt install -y algol68g
 apt install -y gnat-10
 apt install -y bison
 apt install -y flex
-apt install -y gsmalltalk
+apt install -y gnu-smalltalk
 apt install -y g++
 apt install -y gprolog
 apt install -y mit-scheme

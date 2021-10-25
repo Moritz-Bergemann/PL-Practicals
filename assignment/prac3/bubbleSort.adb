@@ -10,7 +10,7 @@ procedure BubbleSort is
     Sorted: Boolean := False;
     New_Number: Integer := 123;
     Temp: Array_Values;
-    My_Array: Array_Type := (5, 3, 1, 6, 5, 53, 24, 12, 1, 0);
+    My_Array: Array_Type := (124, 12, 12, 5, 15, 6, 1, 2, 3, 1);
 begin
     -- Print the initial array
     Put_Line ("INITAL ARRAY:");

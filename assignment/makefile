@@ -27,14 +27,18 @@ prac5-sh: prac5/findAllConf.sh
 prac6: prac6/fizzbuzz.st
 	gst prac6/fizzbuzz.st
 
-prac7:
-	echo "TODO"
+prac7: prac7/booksort
+	./prac7/booksort
+
+prac7/booksort: prac7/booksort.cpp prac7/book.cpp
+	g++ -g -Wall -o prac7/booksort prac7/booksort.cpp prac7/book.cpp
 
 prac8:
-	echo "TODO"
+	prolog --consult-file prac8/fizzbuzz.pl --query-goal 'fizzbuzz(0)'
 
 prac9:
-	echo "Run `scheme`, then run `(load "prac9/cocktail_sort.scm")`, then run `(cocktail-sort <your list>)`"
+	echo "Testing on random sequence (-36, 86, 23, -93, -52, -100, 91, -16, -63, -11, 62, -35, 7, 8, 13, -99, -61, -28, -76, -62, -38, 100, -41, 66)"; \
+	scheme --load prac9/cocktail_sort.scm --eval "(cocktail-sort '(-36 86 23 -93 -52 -100 91 -16 -63 -11 62 -35 7 8 13 -99 -61 -28 -76 -62 -38 100 -41 66))"
 
 prac1/fizzbuzz: prac1/fizzbuzz.f
 	f77 prac1/fizzbuzz.f -o prac1/fizzbuzz
@@ -57,3 +61,4 @@ clean:
 	rm -f prac1/fizzbuzz 
 	rm -f prac3/bubbleSort prac3/bubbleSort.o prac3/bubbleSort.ali 
 	rm -f prac4/array_sorter prac4/lex.yy.c prac4/y.tab.c prac4/y.tab.h
+	rm -f prac7/booksort
